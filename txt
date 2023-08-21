@@ -1,0 +1,101 @@
+// export const createBook = async (req, res) => {
+
+//   if (!req.body.library_id){
+//     req.body.library_id = req.body.library_id.split(",").map((id) => Number(id));
+//     res.status(200).json({ message: "library_id is required" });
+
+//   }
+// if(!req.body.author_id){
+// req.body.author_id = req.body.author_id.split(",").map((id) => Number(id));
+// res.status(200).json({ message: "author_id is required" });
+// }
+
+//   try {
+
+// const bookexists = await Books.findAll({
+//   // where: {
+//   //   name: req.body.name,
+//   //   author_id: req.body.author_id,
+//   // },
+// })
+// if(bookexists.includes[req.body.name]){
+//   res.status(200).json({ message: "book already exists" });
+// }else{
+//   const book = await Books.create(req.body);
+// await Library.update({ book_id: book.id }, { where: { id: req.body.library_id } });
+// res.status(200).json({ message: "Record created successfully" });
+
+//   };
+//   } catch (error) {
+//     res.status(500).json(error);
+//   }
+
+// };
+// export const createBook = async (req, res) => {
+//   const { libraryId, authorName, bookTitle } = req.body;
+
+//   try {
+//     // Check if the author exists
+//     let author = await Author.findOne({ where: { name: authorName } });
+//     if (!author) {
+//       author = await Author.create({ name: authorName });
+//     }
+
+//     // Check if the book already exists in any library
+//     const existingBook = await Books.findOne({
+//       where: { title: bookTitle },
+//     });
+//     if (existingBook) {
+//       return res.status(409).json({ message: 'Book already exists' });
+//     }
+
+//     // Find or create library
+//     let library;
+//     if (libraryId) {
+//       library = await Library.findByPk(libraryId);
+//     } else {
+//       library = await Library.create();
+//     }
+
+//     // Create book and associate with author and library
+//     const book = await Books.create({ title: bookTitle });
+//     await book.setAuthor(author);
+//     await book.addLibrary(library);
+
+//     res.status(201).json({ message: 'Library and book created successfully' });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: 'Error creating library and book' });
+//   }
+// };
+
+// export const createBook= async(req,res)=>{
+
+// try {
+//   if (!req.body.library_id){
+//     req.body.library_id = req.body.library_id.split(",").map((id) => Number(id));
+//     res.status(200).json({ message: "library_id is required" });
+
+//   }
+//   if(!req.body.author_id){
+//     req.body.author_id = req.body.author_id.split(",").map((id) => Number(id));
+//     res.status(200).json({ message: "author_id is required" });
+//   }
+//   const bookhaveoneauthor = await Books.findOne({
+//     where: {
+//       name: req.body.name,
+//       author_id: req.body.author_id,
+//     },
+//   })
+
+//   if (bookhaveoneauthor)
+//   {
+//     const book = await Books.create(req.body);
+//     await Library.update({ book_id: book.id, author_id: req.body.author_id}, { where: { id: req.body.library_id , author_id: req.body.author_id} });
+//     res.status(200).json({ message: "Record created successfully" });
+//   }
+// } catch (error) {
+//   res.status(500).json(error);
+// }
+
+// }
